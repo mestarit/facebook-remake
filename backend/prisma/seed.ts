@@ -7,17 +7,19 @@ const userData: Prisma.UserCreateInput[] = [
     name: 'admin',
     email: 'admin@admin.local',
     password: 'admin',
-    posts: {
-      create: [
-        {
-          title: 'Join the Prisma Slack',
-          content: 'https://slack.prisma.io',
-          published: true,
-        },
-      ],
-    },
   },
+  {
+    name: 'user',
+    email: 'lul',
+    password: 'lul',
+  },
+
 ]
+
+//add a friend ship
+
+
+
 
 async function main() {
   console.log(`Start seeding ...`)

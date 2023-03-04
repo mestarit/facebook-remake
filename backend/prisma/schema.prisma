@@ -13,7 +13,7 @@ model User {
   name  String?
   password String?
   posts Post[]
-  
+  friends User[]
 }
 
 model Post {

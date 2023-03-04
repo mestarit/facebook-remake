@@ -40,6 +40,25 @@ app.post('/login', async (req, res) => {
   }
 })
 
+app.post('/addFriend', async (req, res) => {
+  const { userId, friendId } = req.body
+  console.log(req.body)
+  try{
+    const friend = await prisma.friend.create({
+      data: {
+        userId,
+        friendId,
+      },
+    })
+    res.json(friend)
+  }
+  catch(e){
+    console.log(e)
+    res.status(500).json({error: e})
+  }
+})
+
+
 
 
 const server = app.listen(3000, () =>

@@ -13,7 +13,10 @@ model User {
   name  String?
   password String?
   posts Post[]
-  friends User[]
+  profile Profile?
+  foo Friend[] @relation("foo")
+  bar Friend[] @relation("bar")
+
 }
 
 model Post {
@@ -26,3 +29,25 @@ model Post {
   author    User?    @relation(fields: [authorId], references: [id])
   authorId  Int?
 }
+
+
+model Profile {
+  id     Int     @id @default(autoincrement())
+  bio    String?
+  user   User    @relation(fields: [userId], references: [id])
+  userId Int     @unique
+}
+
+model Friend {
+  id        Int     @id @default(autoincrement())
+  user      User    @relation(name:"foo" ,fields: [userId], references: [id])
+  userId    Int
+  friend    User    @relation(name:"bar", fields: [friendId], references: [id])
+  friendId  Int
+  createdAt DateTime @default(now())
+  @@unique([userId, friendId])
+}
+
+
+
+
